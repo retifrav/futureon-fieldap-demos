@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>TabProjects.qml</file>
+        <file>TabLogs.qml</file>
+        <file>MessageBox.qml</file>
+        <file>TextValue.qml</file>
+    </qresource>
+</RCC>
