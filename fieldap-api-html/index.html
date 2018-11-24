@@ -35,6 +35,8 @@
                 $("#btn_getAssets").css("display", "none");
                 $("#pb_getAssets").css("display", "block");
 
+                $("#results_getAssets").empty();
+
                 jQuery.ajax({
                     url: fieldAPendpoint + "/v1.4/assets",
                     data: "",
