@@ -1,4 +1,7 @@
-**/build-*/*
 *.pro.user*
 *.dylib
+build-*
+
 .vscode
+bin
+obj
