@@ -1,0 +1,36 @@
+﻿body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 70%;
+    margin: 50px auto;
+}
+
+div.header {
+    margin-bottom: 15px;
+}
+h2 {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+div.results {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+div.results div {
+    margin: 5px;
+}
+.asset {
+    max-width: 300px;
+    border: 3px solid DimGray;
+    text-align: center;
+}
+.img-asset {
+    width: 250px;
+    height: 250px;
+    margin: 15px;
+}
+
+i.no {
+    color: red;
+}

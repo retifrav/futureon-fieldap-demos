@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FutureOn FieldAP API demo</title>
+
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="site.css" />
+
+        <script src="lib/jquery/jquery-3.3.1.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="jumbotron">
+            <h1>FutureOn FieldAP API demo</h1>
+        </div>
+
+        <div class="header">
+            <h2>Gallery of assets</h2>
+        </div>
+        <button id="btn_getAssets" type="button" class="btn btn-primary" onclick="getAssets();">get</button>
+        <div id="pb_getAssets" class="progress-bar progress-bar-animated progress-bar-striped form-control"
+            role="progressbar" style="height:30px; display:none;">
+        </div>
+        <div id="results_getAssets" class="results">
+            
+        </div>
+
+        <script>
+            var fieldAPendpoint = "https://app.backend.fieldap.com/API";
+            var fieldAPapiToken = "YOUR-TOKEN";
+
+            function getAssets()
+            {
+                $("#btn_getAssets").css("display", "none");
+                $("#pb_getAssets").css("display", "block");
+
+                jQuery.ajax({
+                    url: fieldAPendpoint + "/v1.4/assets",
+                    data: "",
+                    type: "GET",
+                    crossDomain: true,
+                    beforeSend: function(xhr)
+                    {
+                        xhr.setRequestHeader("token", fieldAPapiToken);
+                    },
+                    success: function(data)
+                    {
+                        for (var r in data)
+                        {
+                            var category = data[r]["category"] === undefined ? "<i class='no'>no category</i>" : data[r]["category"],
+                                img = data[r]["imageUrl"] === undefined ? "<i class='no'>no image</i>" : "<img src='" + data[r]["imageUrl"] + "' class='img-responsive img-asset'/>",
+                                description = data[r]["description"] === undefined ? "<i class='no'>no description</i>" : data[r]["description"];
+                            $("#results_getAssets").append(
+                                "<div class='asset'>"
+                                + "<p style='margin:10px;'>"
+                                    + "<b>" + category + "</b><br/>"
+                                    + data[r]["name"] + "<br/>"
+                                    + description
+                                + "</p>"
+                                + img
+                                + "</div>"
+                                );
+                        }
+                    },
+                    error: function(data) {
+                        console.log("Some error: " + data.statusText);
+                    },
+    	            complete: function() {
+                        $("#pb_getAssets").css("display", "none");
+    	                $("#btn_getAssets").css("display", "block");
+    	            }
+                });
+            }
+        </script>
+    </body>
+</html>
